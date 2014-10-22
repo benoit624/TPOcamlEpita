@@ -59,6 +59,11 @@ extract (Or( (And (Var "a", Var "b")), (And (Var "c", Not (Var "e")))));;
 let generate t= 
     let rec init = function
         |[]->[]
-        |h::t->0::init t in init t;;
+        |h::t->0::init t in 
+let rec add = function 
+    |0::t->1::t;
+    |1::t->0::add t in 
+let rec aux tab t= match (tab,t)
+    |(h1::t1,h2::t2)->append [(h1,h2)] (aux tab t) init t;;
 generate ["a"];;
 generate ["a";"b"];;
